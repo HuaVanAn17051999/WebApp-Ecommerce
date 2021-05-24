@@ -1,0 +1,43 @@
+﻿@model List<DO_AN_SEM3.Entities.Product>
+@{
+    ViewBag.Title = "SanPhamMoiNhat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <!-- Card-->
+                    <a href="~/chi-tiet-san-pham/@item.Seotitle/@item.Id">
+                        <div class="card rounded shadow-sm border-0 mb-3">
+                            <div class="card-body p-4">
+                                <img src="@Url.Content("~/Content/UploadFile/" + item.ImagePath)" alt="" class="img-fluid d-block mx-auto mb-3">
+                                <h5> <a href="#" class="text-dark">@item.Name</a></h5>
+                                <div class="d-flex">
+                                    <p>@item.Price đ</p>
+                                    <p class="text-danger ml-2">- @item.Discount %</p>
+                                </div>
+
+                                <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <ul class="list-inline small">
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+

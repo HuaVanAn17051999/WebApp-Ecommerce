@@ -1,0 +1,91 @@
+﻿@{
+    var inforSession = (CLIENT.Models.InforSession)Session["InforSession"];
+}
+<style>
+    .textCommon {
+        font-family: 'FontAwesome';
+        font-size: xx-large;
+        font-style: italic;
+    }
+
+    .xinchao_account {
+        font-family: 'FontAwesome';
+        cursor: pointer
+    }
+
+    .dangxuat {
+        font-family: 'FontAwesome';
+        cursor: pointer;
+        color: black;
+    }
+
+    .logout {
+        background: white;
+        border-radius: 5px;
+        height: 38px;
+        width: 150px;
+        cursor: pointer;
+    }
+
+    .fa-sign-out {
+        color: black;
+        font-size: 15px;
+    }
+
+    .option {
+        font-family: 'FontAwesome';
+    }
+</style>
+<div class="container-fluid">
+    <div class="header_bottom h_bottom_three sticky-header bg-black">
+        <div class="row align-items-center" style="background: #db6714;">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="textCommon text-white">
+                    thegioididong 
+                </a>
+            </div>
+            @if (inforSession != null)
+            {
+                <div class="col-md-8 d-flex justify-content-end">
+                    <div class="main_menu menu_three menu_position text-left">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a class="active textCss" style="font-family: 'FontAwesome'">Xin chào: @inforSession.UserName</a>
+                                    <ul class="sub_menu">
+                                        <li class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-sign-out pr-2" aria-hidden="true"></i>
+                                            <a href="~/Account/Logout" class="text-dark" style="font-family: 'FontAwesome'">Đăng xuất </a>
+                                        </li>
+                                        <li class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-info pr-2" aria-hidden="true"></i>
+                                            <a href="~/Account/Edit/@inforSession.UserId" class="text-dark" style="font-family: 'FontAwesome'"> Thông tin tài khoản</a>
+                                        </li>
+                                        <li class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-info pr-2" aria-hidden="true"></i>
+                                            <a href="~/Account/LichSuMuaHang" class="text-dark" style="font-family: 'FontAwesome'"> Lịch sử mua hàng</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+            </div>
+            }
+            else
+            {
+                <div class="col-md-8 d-flex justify-content-end">
+                    <div class="header_top_links">
+                        <ul>
+                            <li><a class="option" href="~/Account/Login">Đăng Nhập</a></li>
+                            <li><a class="modalRegister option" href="~/Account/Register">Đăng Ký </a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

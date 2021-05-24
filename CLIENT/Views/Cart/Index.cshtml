@@ -1,0 +1,194 @@
+﻿@model CLIENT.Models.ThongTinDiaChiModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@section css {
+    <link href="~/Content/css/cart/style.css" rel="stylesheet" />
+    <link href="~/Content/css/common.css" rel="stylesheet" />
+}
+@section scripts {
+    <script type="text/javascript">
+        var cart = JSON.parse(localStorage.getItem('giohang'));
+        var TamTinhTien = 0;
+        if (localStorage.getItem("giohang") === null) {
+            $('.noCart').show();
+            $('.yes-cart').hide();
+        }
+        else {
+            $('.noCart').hide();
+            $('.yes-cart').show();
+            $port = window.location.port;
+            console.log($port);
+            console.log(window.location.hostname);
+            $hostName = 'http://' + window.location.hostname + ($port != null ? ":" + $port : "");
+            for (i = 0; i < cart.length; i++) {
+                var SoTienSauKhiGiamGia = cart[i].price * (100 - cart[i].giamgia) / 100;
+                SoTienCuaMotSanPham = cart[i].soluong * SoTienSauKhiGiamGia;
+                TamTinhTien += SoTienCuaMotSanPham;
+                SoTienSauKhiGiamGia = SoTienSauKhiGiamGia.toLocaleString('vi', { style: 'currency', currency: 'VND' });
+                var gia = cart[i].price;
+                gia = gia.toLocaleString('vi', { style: 'currency', currency: 'VND' });
+                var img = $hostName + "/Content/UploadFile/" + cart[i].anhSp;
+                $('.content').append(
+                    '<div class="row mb-3 border-bottom-cart">'
+                    + '<div class="col-md-8 d-flex flex-column" >'
+                    + '<div class="d-flex">'
+                    + '<p class="pr-3">'
+                    + '<img src="' + img + '" style="height: 60px"/>'
+                    + '</p>'
+                    + '<div class="d-flex flex-column">'
+                    + '<p class="mb-0">' + cart[i].ten + '</p>'
+                    + '<p class="xoaSP">'
+                    + '<a onclick="xoa( ' + cart[i].id + ')" class="pr-2">Xóa</a>'
+                    + '<a href="#" >Để dành mua sau</a>'
+                    + '</p>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="col-md-4 d-flex ">'
+                    + '<div class="d-flex flex-column">'
+                    + '<p class="mb-0"> ' + SoTienSauKhiGiamGia + '</p>'
+                    + '<p class="gia">'
+                    + '<span class="gia-color"> ' + gia + '</span>'
+                    + '<span> ' + cart[i].giamgia + '</span>'
+                    + '</p>'
+                    + '</div>'
+
+                    + '<p class="ChonSoLuong">'
+                    + '<span class="GiamSoLuong">-</span>'
+                    + '<input type="tel" class="qty-input" min=0 name="' + cart[i].id + '"  value="' + cart[i].soluong + '">'
+                    + '<span class="TangSoLuong"">+</span>'
+                    + '</p>'
+                    + '</div>'
+                    + '</div>'
+                );
+            }
+            TamTinhTien = TamTinhTien.toLocaleString('vi', { style: 'currency', currency: 'VND' });
+            $('.tientinhtam').append(TamTinhTien);
+        }
+
+        function xoa(id) {
+            var xacnhan = confirm("Bạn có chắc xóa sản phẩm này không ?");
+            if (xacnhan == true) {
+                for (i in cart) {
+                    if (cart[i].id == id) {
+                        cart.splice(i, 1);
+                        window.localStorage.setItem('giohang', JSON.stringify(cart));
+                        window.location.href = '@Url.Action("Index", "Cart")';
+                    }
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            $('.GiamSoLuong').on('click', function () {
+                this.parentNode.childNodes[1].value = parseInt(this.parentNode.childNodes[1].value) - 1;
+                console.log(this.parentNode.childNodes[1]);
+                var id = parseInt(this.parentNode.childNodes[1].name);
+                for (i in cart) {
+                    if (cart[i].id == id) {
+                        cart[i].soluong = this.parentNode.childNodes[1].value;
+                        window.localStorage.setItem("giohang", JSON.stringify(cart));
+                        window.location.reload();
+                    }
+                }
+            });
+            $('.TangSoLuong').on('click', function () {
+                this.parentNode.childNodes[1].value = parseInt(this.parentNode.childNodes[1].value) + 1;
+                console.log(this.parentNode.childNodes[1].value);
+                var id = parseInt(this.parentNode.childNodes[1].name);
+                for (i in cart) {
+                    if (cart[i].id == id) {
+                        cart[i].soluong = this.parentNode.childNodes[1].value;
+                        window.localStorage.setItem("giohang", JSON.stringify(cart));
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+        function TienHanhDatHang() {
+            var isAddress = @Html.Raw(Json.Encode(Model));
+            var isLogin = @Html.Raw(Json.Encode((CLIENT.Models.InforSession)Session["InforSession"]));
+            if (isLogin == null) {
+                window.location.href = '@Url.Action("Login", "Account")';
+            }
+            else if (isAddress == null) {
+                window.location.href = '@Url.Action("shipping", "CheckOut")';
+            }
+            else {
+                window.location.href = '@Url.Action("Payment", "CheckOut")';
+                          
+            }
+        }
+
+    </script>
+}
+<div class="container yes-cart flex-column mb-3">
+    <div class="row d-flex">
+        <div class="col-md-8 listCart">
+            <div class="content p-3">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @if (Model != null)
+            {
+                <div class="diachi p-3">
+                    <div class="d-flex justify-content-between textCss">
+                        <p>Địa chỉ giao hàng</p>
+                        <a href="~/CheckOut/Shipping" class="text-blue">Thay đổi</a>
+                    </div>
+                    <div class="d-flex">
+                        <p class="textCss">@Model.hoten</p>
+                        <p class="daungancach"></p>
+                        <p class="textCss pl-2">@Model.sdt</p>
+                    </div>
+                    <div>
+                        <p class="textCss color-diachi">(Thôn/Làng): @Model.diachi, (Xã/Phường) @Model.XaPhuong, (Quận/Huyện) @Model.QuanHuyen, (Tỉnh/Thành) @Model.TinhThanh</p>
+                    </div>
+                </div>
+
+            }
+            <div class="diachi p-3 mt-2">
+                <div class="textCss">
+                    <p>Mã khuyển mãi</p>
+                    <p><a class="text-blue">Chọn hoặc nhập Khuyến mãi</a></p>
+                </div>
+            </div>
+            <div class="diachi p-3 mt-2">
+                <div class="textCss d-flex justify-content-between border-bottom-tamtinh">
+                    <p class="color-lable-tien">Tạm tính </p>
+                    <p class="tientinhtam"></p>
+                </div>
+                <div class="textCss d-flex justify-content-between ">
+                    <p class="color-lable-tien">Thành tiền </p>
+                    <h3 class="tientinhtam text-danger mb-0"></h3>
+                </div>
+                <p class="d-flex justify-content-end">
+                    <span class="textCss VAT">(Đã bao gồm VAT nểu có)</span>
+                </p>
+            </div>
+            <div class="mt-2">
+                <button class="textCss TienHanhDatHang" onclick="TienHanhDatHang()">Tiến hành đặt hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container noCart" style="height: 500px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-center flex-column">
+                <i class="fa fa-cart-arrow-down fa-5x d-flex justify-content-center" aria-hidden="true"></i>
+                <h2 class="d-flex justify-content-center kocoSP">Không có sản phẩm nào trong giỏ hàng !!!</h2>
+                <a href="/Home" class="vetrangchu">VỀ TRANG CHỦ</a>
+                <p class="d-flex justify-content-center">Khi cần trợ giúp vui lòng gọi 0357136105 hoặc 0357125106 (7h30 - 22h)</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

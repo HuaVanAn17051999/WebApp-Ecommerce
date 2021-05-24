@@ -1,0 +1,18 @@
+﻿@model List<DO_AN_SEM3.Entities.Category>
+
+<div class="top_tags_area color_three">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tags_content">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li><a style="font-family: 'FontAwesome'; font-size: 16px" href="/dtdd/@item.Seotitle/@item.Id">@item.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

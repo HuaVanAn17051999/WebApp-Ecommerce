@@ -1,0 +1,57 @@
+﻿@model List<DO_AN_SEM3.Entities.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mt-3">
+    <a href="/Product/Create" class="btn btn-success text">Tạo mới </a>
+</div>
+<table id="tableProduct" class="display table table-sm body-table" style="width:100%">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+            var price = String.Format(info, "{0:c}", item.Price);
+            <tr>
+                <td>@item.Name</td>
+                <td>@price</td>
+                <td>@item.Amount</td>
+                <td>
+                    <img src="@Url.Content("~/Content/UploadFile/" + item.ImagePath)" style="height: 70px; width: 70px" />
+                </td>
+                @if (item.Status == true)
+                {
+                    <td>Hiển thị</td>
+                }
+                else
+                {
+                    <td>Không hiển thị</td>
+                }
+                <td class="project-actions text-right">
+                    @Html.ActionLink("Xem", "Details", new { id = item.Id })|
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id })|
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tableProduct').DataTable();
+        });
+    </script>
+
+}

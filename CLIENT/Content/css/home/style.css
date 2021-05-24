@@ -1,0 +1,31 @@
+﻿
+
+.img {
+    height: 450px !important;
+    background: url("/Content/Slider/slide3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.img2 {
+    height: 450px !important;
+    background: url("/Content/Slider/slider1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.sotien {
+    text-decoration: line-through;
+    color: rgb(120, 120, 120);
+    font-size: 13px;
+}
+.text {
+    font-family: 'FontAwesome';
+}
+.ten {
+    font-size: 18px;
+}
+.gia {
+    font-size: 16px;
+}

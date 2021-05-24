@@ -1,0 +1,168 @@
+﻿
+@model  List<DO_AN_SEM3.Models.LichSuMuaHangModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+<style>
+    th {
+        font-size: 18px;
+    }
+
+    td {
+        font-family: 'FontAwesome';
+        font-size: 16px;
+    }
+    .title {
+        font-size: 19px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="text mb-0" style="font-size: 18px;">Lịch sử mua hàng </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-striped" id="tableLichSuMuaHang">
+                        <thead>
+                            <tr class="text">
+                                <th>Ngày đặt hàng</th>
+                                <th>Khách hàng </th>
+                                <th>Ảnh sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    var gia = String.Format(info, "{0:c}", item.Price);
+                                    <tr>
+
+                                        <td>@item.Date.ToShortDateString()</td>
+                                        <td>@item.HoVaTen</td>
+                                        <td>
+                                            <img src="@Url.Content("~/Content/UploadFile/" + item.ImagePath)" alt="" style="height: 60px;" />
+                                        </td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Quantity </td>
+                                        <td>@gia </td>
+                                        @if (item.Satus == 1)
+                                        {
+                                            <td class="text-primary"><i class="fa fa-hand-paper-o pr-2" aria-hidden="true"></i>Đang lấy hàng</td>
+                                        }
+                                        else if (item.Satus == 2)
+                                        {
+                                            <td class="text-danger"> <i class="fa fa-ban pr-2" aria-hidden="true"></i>Đơn hàng đã hủy</td>
+                                        }
+                                        else if (item.Satus == 3)
+                                        {
+                                            <td class="text-secondary"><i class="fa fa-motorcycle pr-2" aria-hidden="true"></i>Đang giao hàng</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-success"><i class="fa fa-handshake-o pr-2" aria-hidden="true"></i>Giao dịch thành công </td>
+
+                                        }
+                                        <td class="text-info">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            <a id="notify" onclick="Capnhat(@item.Id)">Cập nhật</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tableLichSuMuaHang').DataTable({
+                "searching": false,
+                "lengthChange": false
+            });
+        });
+        function Capnhat(id) {
+            $.confirm({
+                title: '<p class="text title mb-0 pb-0">Cập nhật trạng thái</p>',
+                content: '' +
+                    '<form action="" class="formName">' +
+                    '<div class="form-group">' +
+                    '<select id="optionValue" class="form-control form-control-sm"><option value="1">Đang lấy hàng</option><option value="2">Hủy đơn hàng</option><option value="3">Đang giao hàng</option><option value="4">Giao hàng thành công</option></select>' +
+                    '</div>' +
+                    '</form>',
+                buttons: {
+                    formSubmit: {
+                        text: 'Submit',
+                        btnClass: 'btn-blue',
+                        action: function () {
+                             $.ajax({
+                                 url: "/LichSuMuaHang/CapNhatTrangThai",
+                                dataType: "JSON",
+                                method: "POST",
+                                data: { id: id, status: $('#optionValue').val()},
+                                success: function (res) {
+                                    if (res.success == true) {
+                                        $.notify("Cập nhật thành công !!!", "success");
+                                       
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    cancel: function () {
+                        //close
+                    },
+                },
+                onContentReady: function () {
+                    // bind to events
+                    var jc = this;
+                    this.$content.find('form').on('submit', function (e) {
+                        // if the user submits the form by pressing enter in the field.
+                        e.preventDefault();
+                        jc.$$formSubmit.trigger('click'); // reference the button and click it
+                    });
+                }
+            });
+        }
+        function HuyDonHang(id) {
+            $.confirm({
+                title: 'Xác nhận!',
+                content: 'Bạn có chắc xóa đơn hàng này không !',
+                buttons: {
+                    confirm: function () {
+                       $.ajax({
+                        url: "/Account/LichSuMuaHang",
+                        dataType: "JSON",
+                        method: "POST",
+                        data: { id: id },
+                        success: function (res) {
+                            if (res.success == true) {
+                                window.location.href = '@Url.Action("LichSuMuaHang", "Account")';
+                                window.location.reload();
+                            }
+                        }
+                    });
+                    },
+                    cancel: function () {
+
+                    },
+                }
+            });
+        }
+    </script>
+}

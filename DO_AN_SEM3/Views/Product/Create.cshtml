@@ -1,0 +1,81 @@
+﻿@model DO_AN_SEM3.Models.Product.ProductModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+    <link href="~/Content/Account/style.css" rel="stylesheet" />
+}
+<form action="/Product/Create" method="post" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header" style="background: #dfba4b">
+            <h2 class="text">Tạo mới sản phẩm</h2>
+        </div>
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Tên sản phẩm </label>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control textCss" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Số lượng </label>
+                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control textCss" } })
+                        @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Giá </label>
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control textCss" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Chọn thể loại </label>
+                        <select class="form-control textCss" name="CategoryId">
+                            @foreach (var item in ViewBag.Category)
+                            {
+                                <option class="textCss" value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Giảm giá</label>
+                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control textCss" } })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Chọn ảnh </label>
+                        <input class="form-control" type="file" name="ImageFile" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="textCss">Trạng thái</label>
+                        @Html.CheckBoxFor(x => x.TrangThai)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" id="TaoMoi" class="text btn" style=" background: #dfba4b">Tạo mới</button>
+        </div>
+    </div>
+</form>
+
+

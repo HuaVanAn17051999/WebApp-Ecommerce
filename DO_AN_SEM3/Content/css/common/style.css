@@ -1,0 +1,56 @@
+﻿
+
+
+
+.text {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: initial;
+    font-style: inherit;
+}
+.category_menu {
+    font-family: ui-serif;
+    text-transform: initial;
+    font-size: 15px;
+}
+.body-table {
+    font-size: 14px;
+    font-family: 'FontAwesome';
+    font-style: initial;
+    text-transform: initial;
+}
+#tableProduct_length {
+    margin-top: 22px;
+    font-family: 'FontAwesome';
+}
+#tableProduct_filter {
+    margin-top: 22px;
+    font-family: 'FontAwesome';
+}
+.content-wrapper {
+    background-color: #fff;
+}
+#tableProduct_info {
+    font-family: 'FontAwesome';
+}
+#tableProduct_previous {
+    font-family: 'FontAwesome';
+}
+#tableProduct_next {
+    font-family: 'FontAwesome';
+}
+.paginate_button current {
+    background: #ffc107;
+}
+.main-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.project-actions {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.content-wrapper {
+    margin-top: 30px;
+}

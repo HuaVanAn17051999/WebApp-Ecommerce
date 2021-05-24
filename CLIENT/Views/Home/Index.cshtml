@@ -1,0 +1,101 @@
+﻿@model List<DO_AN_SEM3.Entities.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+    <link href="~/Content/css/home/style.css" rel="stylesheet" />
+}
+<div class="container mb-2">
+    <div class="col-md-12">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="img"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="img2"></div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p style="font-family: 'Times New Roman', Times, serif; font-style: initial; text-transform: capitalize; font-size: 25px; font-weight: bold">sản phẩm mới nhất</p>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+            var gia = String.Format(info, "{0:c}", item.Price);
+            var GiaTiemSauKhiGiamGia = item.Price * (100 - item.Discount) / 100;
+            var formatGiaTienSauKhiGiamGia = String.Format(info, "{0:c}", GiaTiemSauKhiGiamGia);
+            <div class="col-md-3" style="cursor: pointer;">
+                <a href="~/chi-tiet-san-pham/@item.Seotitle/@item.Id" onclick="SanPhamDaXem(@item.Id, '@item.Name', @item.Price, @item.Discount, '@item.ImagePath', '@item.Seotitle')">
+                    <div class="card rounded shadow-sm border-0 mb-3">
+                        <div class="card-body p-4">
+                            <img id="image" src="@Url.Content("~/Content/UploadFile/" + item.ImagePath)" alt="" class="img-fluid d-block mx-auto mb-3">
+                            <h5> <a href="#" class="text-dark ten text">@item.Name</a></h5>
+                            <div>
+                                <p class="d-flex text mb-0">
+                                    <span class="text gia">@formatGiaTienSauKhiGiamGia</span>
+                                    <span class="text-danger ml-2 text">- @item.Discount %</span>
+                                </p>
+                                <p class="text sotien">@gia</p>
+                            </div>
+                            <ul class="list-inline small">
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        var spDaXem = [];
+
+        if (window.localStorage) {
+            spDaXem = JSON.parse(window.localStorage.getItem("SanPhamDaXem"));
+        }
+        if (!spDaXem) {
+            spDaXem = [];
+        }
+        function SanPhamDaXem(id, name, gia, discount, imagePath, seotitle) {
+            var exits = false;
+            for (i in spDaXem) {
+                if (spDaXem[i].id == id) {
+                    exits = true;
+                }
+            }
+            if (!exits) {
+                var data = { id: id, ten: name, price: gia, giamgia: discount, anhSP: imagePath, seotitle: seotitle }
+                spDaXem.push(data);
+                window.localStorage.setItem("SanPhamDaXem", JSON.stringify(spDaXem));
+            }
+
+        }
+    </script>
+}

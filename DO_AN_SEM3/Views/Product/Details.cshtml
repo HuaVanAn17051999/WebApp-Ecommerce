@@ -1,0 +1,87 @@
+﻿@model DO_AN_SEM3.Models.Product.ProductModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+    <link href="~/Content/Account/style.css" rel="stylesheet" />
+}
+<div class="card">
+    <div class="card-header" style="background: #dfba4b">
+        <h2 class="text">Thông tin chi tiết sản phẩm</h2>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="textCss">Tên sản phẩm </label>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="textCss">Số lượng </label>
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="textCss">Giá </label>
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="textCss">Loại điện thoại </label>
+                    @Html.EditorFor(model => model.LoaiSanPham, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="textCss">Giảm giá</label>
+                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="textCss">Trạng thái</label>
+                    @if (Model.TrangThai == true)
+                    {
+                        <input disabled type="text" class="form-control w-100" value="Hiển thị" />
+                    }
+                    else
+                    {
+                        <input disabled type="text" class="form-control" value="Không hiển thị" />
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group d-flex flex-column">
+                    <label class="textCss">Ảnh sản phẩm </label>
+                    <img src="@Url.Content("~/Content/UploadFile/" + Model.ImagePath)" style="width: 130px;" />
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="card-footer">
+        <button type="submit" class="text btn btn-quaylai" style=" background: #dfba4b">Quay lại</button>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-quaylai').on('click', function () {
+                window.history.back();
+            });
+        });
+    </script>
+    }

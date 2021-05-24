@@ -1,0 +1,125 @@
+﻿
+
+.listCart {
+    background-color: #fff;
+}
+.vetrangchu {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #288ad6;
+    margin: 0 10px;
+    color: #288ad6;
+}
+
+.kocoSP {
+    font-style: inherit;
+    font-family: 'FontAwesome';
+}
+.xoaSP {
+    font-size: 13px;
+    color: blue;
+    font-family: 'FontAwesome';
+    font-style: inherit;
+}
+.gia{
+    font-size: 13px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: initial;
+}
+.gia-color {
+    color: rgb(162, 162, 162);
+    text-decoration: line-through;
+}
+.ChonSoLuong {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 3px;
+    width: 104px;
+    height: 40%;
+    margin-left: 30px;
+}
+.GiamSoLuong {
+    cursor: pointer;
+    border-right: 1px solid rgb(200, 200, 200);
+    color: rgb(153, 153, 153);
+    padding: 6px 12px;
+}
+.TangSoLuong {
+    cursor: pointer;
+    padding: 6px 12px;
+    border-left: 1px solid rgb(200, 200, 200);
+    color: rgb(153, 153, 153);
+}
+.qty-input {
+    border: none;
+    background: transparent;
+    width: 35px;
+    text-align: center;
+    font-size: 13px;
+    appearance: none;
+    margin: 0px;
+}
+.diachi {
+    background-color: #fff;
+}
+.text-blue {
+    color: rgb(13, 92, 182);
+}
+.daungancach {
+    border-right: 1px solid;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.color-diachi {
+    color: rgb(120, 120, 120);
+}
+.border-bottom-tamtinh {
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+.border-bottom-cart {
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+.color-lable-tien {
+    font-weight: 300;
+}
+.VAT {
+    font-weight: 300;
+}
+.TienHanhDatHang {
+    background: rgb(255, 66, 78);
+    color: rgb(255, 255, 255);
+    padding: 13px 10px;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    display: block;
+    margin: 15px 0px;
+    cursor: pointer;    
+    font-size: 17px;
+}
+.loader {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #16191e;
+    position: absolute;
+}
+.loader > div {
+    height: 100px;
+    width: 100px;
+    border: 15px solid #45474b;
+    border-top-color: #2a88e6;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    animation: spin 1.5s infinite linear;
+}

@@ -1,0 +1,13 @@
+﻿
+
+#employeeTable_wrapper {
+    display: contents;
+}
+#employeeTable_length {
+    display: flex;
+    justify-content: start;
+}
+#employeeTable_filter {
+    display: flex;
+    justify-content: flex-end;
+}

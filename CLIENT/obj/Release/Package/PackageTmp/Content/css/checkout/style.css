@@ -1,0 +1,38 @@
+﻿
+.header {
+    padding: 25px 0px 15px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
+    background: rgb(255, 255, 255);
+    position: relative;
+    z-index: 1;
+}
+.body {
+    margin-top: 30px;
+}
+.address {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: initial;
+    font-weight: bold;
+    font-size: 15px;
+}
+.boderAddress {
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    border: 1px dashed rgb(0, 153, 0);
+    padding: 10px 15px;
+    border: 1px dashed rgb(0, 153, 0);
+}
+.ten {
+    font-weight:bold;
+}
+.customDiaChi {
+    font-size: 13px;
+    font-family: initial;
+    font-style: initial;
+    color: #6c757d;
+}
+.editAddress {
+    padding-left: 190px;
+    padding-right: 190px;
+    margin-top: 10px;
+}

@@ -1,0 +1,184 @@
+﻿.row2 {
+    border-radius: 4px;
+    background: #ffffff;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.row3 {
+    border-radius: 4px;
+    background: #ffffff;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.themgiohang {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: initial;
+    text-transform: capitalize;
+    font-style: initial;
+}
+
+.image_list li:hover {
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3)
+}
+
+.image_selected img {
+    max-width: 100%
+}
+
+.sanphamcunggia {
+    text-transform: capitalize;
+    font-style: initial;
+    font-family: 'FontAwesome';
+    font-size: 22px;
+}
+
+.tenphukien {
+    display: flex;
+    justify-content: flex-end;
+    text-transform: capitalize;
+    font-style: initial;
+    font-family: 'FontAwesome';
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.tenphukien1 {
+    justify-content: start;
+    text-transform: capitalize;
+    font-style: initial;
+    font-family: 'FontAwesome';
+    padding: 10px;
+    padding-right: 10px;
+}
+
+.tenphukien2 {
+    justify-content: start;
+    text-transform: capitalize;
+    background: #F8F8F8;
+    font-style: initial;
+    font-family: 'FontAwesome';
+    padding: 10px;
+    padding-left: 10px;
+    padding-left: 10px;
+}
+
+.tenchitiet {
+    background: rgb(239, 239, 239);
+}
+
+.datcauhoi {
+    width: 100%;
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 13px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.guiCauTraLoi {
+    cursor: pointer;
+    width: 154px;
+    height: 40px;
+    margin-left: 10px;
+    padding: 0px;
+    color: rgb(51, 51, 51);
+    font-size: 13px;
+    font-weight: 500;
+    background: rgb(253, 210, 47);
+    border: 0px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.row4 {
+    /* border-radius: 4px;*/
+    background: #ffffff;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-bottom: 1px solid rgb(247, 247, 247);
+}
+
+.content-feedBack {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: initial;
+    text-transform: initial;
+    color: rgb(120, 120, 120);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.NguoiDatCauHoi {
+    border-right: 1px solid rgb(247, 247, 247);
+    font-family: 'Times New Roman', Times, serif;
+    font-style: initial;
+}
+
+.ChonSoLuong {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 3px;
+    width: 104px;
+    height: 40%;
+}
+
+.GiamSoLuong {
+    cursor: pointer;
+    border-right: 1px solid rgb(200, 200, 200);
+    color: rgb(153, 153, 153);
+    padding: 6px 12px;
+}
+
+.TangSoLuong {
+    cursor: pointer;
+    padding: 6px 12px;
+    border-left: 1px solid rgb(200, 200, 200);
+    color: rgb(153, 153, 153);
+}
+
+.qty-input {
+    border: none;
+    background: transparent;
+    width: 35px;
+    text-align: center;
+    font-size: 13px;
+    appearance: none;
+    margin: 0px;
+}
+.product_price {
+    font-size: 25px;
+    font-family: 'FontAwesome';
+    font-style: inherit;
+    font-weight: bold;
+}
+.text {
+    font-family: 'FontAwesome';
+}
+
+.formatGiaTienSauKhiGiamGia {
+    text-decoration: line-through;
+    color: rgb(120, 120, 120);
+    font-size: 13px;
+}
+
+.ten {
+    font-size: 18px;
+}
+
+.gia {
+    font-size: 18px;
+}
+.sotien {
+    text-decoration: line-through;
+    color: rgb(120, 120, 120);
+    font-size: 14px;
+}
+
+.ten {
+    font-size: 18px;
+}
+

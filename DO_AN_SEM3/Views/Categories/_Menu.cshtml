@@ -1,0 +1,57 @@
+﻿@model List<DO_AN_SEM3.Entities.Category>
+
+<li class="nav-header text" style="font-size: 18px;">Danh mục sản phẩm</li>
+<li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+        <i class="fa fa-tree mr-2" aria-hidden="true"></i>
+        <p class="category_menu">
+            ĐIỆN THOẠI
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: none;">
+
+        <li class="nav-item">
+            @foreach (var item in Model)
+            {
+                <a href="/dtdd/@item.Seotitle/@item.Id" class="nav-link">
+                    <i class="fa fa-mobile mr-2" aria-hidden="true"></i>
+                    <p class="text category_menu">@item.Name</p>
+                </a>
+            }
+        </li>
+    </ul>
+</li>
+<li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+        <i class="fa fa-tree mr-2" aria-hidden="true"></i>
+        <p class="category_menu">
+            QUẢN TRỊ HỆ THỐNG 
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+            <a href="~/Account" class="nav-link">
+                <i class="fa fa-users mr-2" aria-hidden="true"></i>
+                <p class="text category_menu">NGƯỜI DÙNG </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="~/QuanLyHangNhap" class="nav-link">
+                <i class="fa fa-bullhorn mr-2" aria-hidden="true"></i>
+                <p class="text category_menu">QUẢN LÝ ĐƠN HÀNG NHẬP </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="~/QuanLyHangTonKho" class="nav-link">
+                <i class="fa fa-bullhorn mr-2" aria-hidden="true"></i>
+                <p class="text category_menu">QUẢN LÝ HÀNG TỒN KHO  </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="~/LichSuMuaHang" class="nav-link">
+                <i class="fa fa-bullhorn mr-2" aria-hidden="true"></i>
+                <p class="text category_menu">QUẢN LÝ MUA HÀNG  </p>
+            </a>
+        </li>
+    </ul>
+</li>

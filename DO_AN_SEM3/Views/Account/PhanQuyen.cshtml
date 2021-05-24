@@ -1,0 +1,45 @@
+﻿@model List<DO_AN_SEM3.Models.Common.ListRoles>
+@{
+    ViewBag.Title = "PhanQuyen";
+    var HoVaTen = ViewData["TenNguoiDung"];
+}
+
+@using (Html.BeginForm("PhanQuyen", "Account", FormMethod.Post, new { @id = "Id" }))
+{
+    if (ViewData["success"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> ViewData["success"]
+        </div>
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <label style="font-family: 'FontAwesome';">Phân quyền người dùng: <span class="text-danger" >@HoVaTen</span></label>
+                    </div>
+                    <div class="card-body">
+
+
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+
+                            <div class="form-check" style=" font-family: 'FontAwesome';">
+                                @Html.HiddenFor(it => it[i].Id)
+                                @Html.HiddenFor(it => it[i].Name)
+                                @Html.DisplayFor(it => it[i].Name)
+                                @Html.CheckBoxFor(it => it[i].Seleted, new { Style = "vertical-align:3px}" })
+                            </div>
+                        }
+                        <button class="btn btn-success mt-2" style=" font-family: 'FontAwesome';">Xác nhận</button>
+
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+   
+}
+

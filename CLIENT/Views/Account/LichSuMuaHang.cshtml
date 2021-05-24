@@ -1,0 +1,118 @@
+﻿@model List<CLIENT.Models.LichSuMuaHangModel>
+@{
+    ViewBag.Title = "LichSuMuaHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+
+}
+@section css {
+    <link href="~/Content/css/common.css" rel="stylesheet" /> 
+}
+<style>
+    th {
+        font-size: 18px;
+    }
+    td {
+        font-family: 'FontAwesome';
+        font-size: 16px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <p class="textCss" style="font-size: 18px;">Lịch sử mua hàng </p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="textCss">
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Ảnh sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        var gia = String.Format(info, "{0:c}", item.Price);
+                                        <tr>
+                                            <td>@item.Date.ToShortDateString()</td>
+                                            <td>
+                                                <img src="@Url.Content("~/Content/UploadFile/" + item.ImagePath)" alt="" style="height: 60px;" />
+                                            </td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Quantity </td>
+                                            <td>@gia </td>
+                                            @if (item.Satus == 1)
+                                            {
+                                                <td class="text-primary"><i class="fa fa-hand-paper-o pr-2" aria-hidden="true"></i>Đang lấy hàng</td>
+                                                <td>
+                                                    <a onclick="HuyDonHang(@item.Id)"><i class="fa fa-trash pr-2" aria-hidden="true"></i>Hủy đơn hàng</a>
+                                                </td>
+                                            }
+                                            else if (item.Satus == 2)
+                                            {
+                                                <td class="text-danger"> <i class="fa fa-ban pr-2" aria-hidden="true"></i>Đơn hàng đã hủy</td>
+                                                <td></td>
+
+                                            }
+                                            else if (item.Satus == 3)
+                                            {
+                                                <td class="text-danger"> <i class="fa fa-ban pr-2" aria-hidden="true">Đang giao hàng</i></td>
+                                                <td></td>
+
+                                            }
+                                            else
+                                            {
+                                                <td class="text-success"><i class="fa fa-handshake-o pr-2" aria-hidden="true"></i>Giao dịch thành công </td>
+                                                <td></td>
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        function HuyDonHang(id) {
+            $.confirm({
+                title: 'Xác nhận!',
+                content: 'Bạn có chắc xóa đơn hàng này không !',
+                buttons: {
+                    confirm: function () {
+                       $.ajax({
+                        url: "/Account/LichSuMuaHang",
+                        dataType: "JSON",
+                        method: "POST",
+                        data: { id: id },
+                        success: function (res) {
+                            if (res.success == true) {
+                                window.location.href = '@Url.Action("LichSuMuaHang", "Account")';
+                            }
+                        }
+                    });
+                    },
+                    cancel: function () {
+                       
+                    },
+                }
+            });
+        }
+    </script>
+}

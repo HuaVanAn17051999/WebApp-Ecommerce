@@ -1,0 +1,175 @@
+﻿@model CLIENT.Models.ThongTinDiaChiModel
+@{
+    Layout = null;
+
+    var inforSession = (CLIENT.Models.InforSession)Session["InforSession"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="~/Content/css/checkout/style.css" rel="stylesheet" />
+    <link href="~/Content/css/common.css" rel="stylesheet" />
+    <link href="~/Content/css/shipping/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/payment.css" rel="stylesheet" />
+    <link href="~/Content/css/common.css" rel="stylesheet" />
+</head>
+<body>
+    <input type="hidden" id="email" name="name" value="@ViewBag.Email" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 d-flex header">
+                <div class="col-md-2 d-flex justify-content-center align-items-center" style="font-family: 'FontAwesome'; font-size: xx-large; font-style: italic">
+                    <a href="~/" class="pl-1 d-flex text-dark">
+                        <p>TheGioiDiDong</p>
+                       
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <div class="textCss d-flex justify-content-between">
+                        <p>Đăng nhập</p>
+                        <p style="padding-left: 73px;">Địa chỉ giao hàng</p>
+                        <p>Than toán & đặt mua</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="circle_css">
+                            <span class="d-flex justify-content-center ">1</span>
+                        </p>
+                        <p>
+                            <hr width="30%" size="10" align="center" />
+                        </p>
+                        <p class="circle_css">
+                            <span class="d-flex justify-content-center">2</span>
+                        </p>
+                        <p>
+                            <hr width="30%" size="10" align="center" />
+                        </p>
+                        <p class="circle_css_3" style="background: #ffc107;">
+                            <span class="d-flex justify-content-center">3</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
+                    <i class="fa fa-phone-square fa-2x" aria-hidden="true" style="color: #a57e0c"></i>
+                    <p class="textCss pl-3 pt-2">0357136105</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model != null)
+    {
+        <input type="hidden" id="diachiId" value="@Model.Id" />
+        <div class="container" style="margin-top: 50px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="textCss" style="font-size: 20px;">Chọn hình thức thanh toán</p>
+                    <div class="thongtindiachi">
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <img src="~/Content/Account/icon-payment-method-cod.svg" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="textCss">Thanh toán tiền mặt khi nhận hàng</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <img src="~/Content/Account/icon-payment-method-credit.svg" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="textCss">Thẻ ATM nội địa / Internet Banking (Miễn phí thanh toán)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <img src="~/Content/Account/icon-payment-method-mo-mo.svg" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="textCss">Thanh toán bằng ví MoNo</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <img src="~/Content/Account/icon-payment-method-zalo-pay.svg" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="textCss">Thanh toán bằng ví ZaloPay</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="thongtindiachi">
+                        <div class="thongtindiachi2">
+                            <div style="padding: 6px; font-style: initial; font-family: 'Times New Roman', Times, serif">Địa chỉ giao hàng</div>
+                            <div class="suathongtin"><a class="textCss" href="~/CheckOut/Shipping">Sửa </a></div>
+                        </div>
+                        <div class="dichigiaohang">
+                            <h2>@Model.hoten</h2>
+                            <p>Địa chỉ giao hàng: @Model.diachi, (Xã/Phường) @Model.XaPhuong, (Quận/Huyện) @Model.QuanHuyen, (Tỉnh/Thành) @Model.TinhThanh</p>
+
+                        </div>
+                    </div>
+                    <div class="thongtindiachi mt-2">
+                        <div class="thongtindiachi2">
+                            <div style="padding: 10px; font-style: initial; font-family: 'Times New Roman', Times, serif">Đơn hàng </div>
+                            <div class="suathongtin"><a class="textCss text-blue" href="~/Cart/Index">Sửa </a></div>
+                        </div>
+                        <div class="giohang" style="height: 100px">
+                            <div style="padding-bottom: 5px; display: flex">
+                            </div>
+                        </div>
+                        <div class="tamtinh">
+                            <div style="padding-left: 15px;" class="textCss">Tổng tiền: </div>
+                            <div class="text-danger tongtien">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="textCss TienHanhDatHang" id="TienHanhMuaHang">Tiến hành đặt mua</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    <div class="container" style="margin-top: 20px;">
+        <div class="row">
+          
+            <div class="col-md-6">
+               
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/js/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/Payment.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>

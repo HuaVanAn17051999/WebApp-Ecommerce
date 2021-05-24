@@ -1,0 +1,49 @@
+﻿@model List<DO_AN_SEM3.Models.QuanLyDonHangModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table id="tableQuanLyDonHang" class="display table table-sm body-table" style="width:100%">
+    <thead>
+        <tr>
+            <th>Ngày bán hàng </th>
+            <th>Khách hàng</th>
+            <th>Điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.NgayBanHang.ToShortDateString()</td>
+            <td>@item.KhachHang</td>
+            <td>@item.Sodt</td>
+            <td>(Thôn/Làng) @item.DiaChi , (Xã/Phường) @item.XaPhuong , (Quận/Huyện) @item.QuanHuyen, (Tỉnh/Thành) @item.TinhThanh</td>
+            <td>@item.TongTien</td>
+            @if (item.TrangThai == 0)
+            {
+                <td class="text-success">Thành công</td>
+            }
+            else if (item.TrangThai == 1)
+            {
+                <td class="text-primary">Đang lấy hàng</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tableQuanLyDonHang').DataTable({
+                
+            });
+        });
+    </script>
+
+}

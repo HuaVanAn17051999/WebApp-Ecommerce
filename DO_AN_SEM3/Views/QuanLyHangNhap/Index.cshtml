@@ -1,0 +1,64 @@
+﻿@model List<DO_AN_SEM3.Models.QuangLyHangNhapModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tongTien = 0;
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@*<form method="post">
+    <div class="d-flex justify-content-end">
+        <input id="valueDate" type="date" name="NgayNhap" />
+        <button type="submit" class="btn btn-primary btn-sm" style="font-family: 'FontAwesome';">Tìm kiếm</button>
+    </div>
+</form>*@
+@if (Model != null)
+{
+    <table id="tableQuanLyDonHangNhap" class="display table table-sm body-table" style="width:100%">
+        <thead>
+            <tr>
+                <th>Ngày nhập</th>
+                <th>Tên SP </th>
+                <th>Ảnh SP</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var gia = String.Format(info, "{0:c}", item.Gia);
+
+                <tr>
+                    <td>@item.NgayNhap.ToShortDateString()</td>
+                    <td>@item.TenSP</td>
+                    <td>
+                        <img src="@Url.Content("~/Content/UploadFile/" + item.AnhSP)" style="height: 70px; width: 70px" />
+                    </td>
+                    <td>@item.SoLuong</td>
+                    <td>@gia</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-start">
+        @{ 
+           
+            var tien = String.Format(info, "{0:c}", tongTien);
+        }
+        <p style="font-family: 'FontAwesome';" class="text-danger">Tổng số tiền nhập trong ngày <span class="GetDate"></span> @tien</p>
+    </div>
+}
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tableQuanLyDonHangNhap').DataTable({
+             
+            });
+            console.log($('#valueDate').val())
+            $('.GetDate').append($('#valueDate').val());
+        });
+    </script>
+
+}

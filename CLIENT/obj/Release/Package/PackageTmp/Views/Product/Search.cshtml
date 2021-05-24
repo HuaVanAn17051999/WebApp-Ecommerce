@@ -1,0 +1,57 @@
+﻿@model DO_AN_SEM3.Entities.Product
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+    <link href="~/Content/css/productGetById/style.css" rel="stylesheet" />
+}
+
+<div class="container py-5">
+    @if (Model != null)
+    {
+
+        var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+        var gia = String.Format(info, "{0:c}", Model.Price);
+        var GiaTiemSauKhiGiamGia = Model.Price * (100 - Model.Discount) / 100;
+        var formatGiaTienSauKhiGiamGia = String.Format(info, "{0:c}", GiaTiemSauKhiGiamGia);
+        <div class="row pb-5 mb-4">
+         
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <!-- Card-->
+                    <a href="~/chi-tiet-san-pham/@Model.Seotitle/@Model.Id">
+                        <div class="card rounded shadow-sm border-0 mb-3">
+                            <div class="card-body p-4">
+                                <img src="@Url.Content("~/Content/UploadFile/" + Model.ImagePath)" alt="" class="img-fluid d-block mx-auto mb-3">
+                                <h5> <a href="#" class="text ten text-dark">@Model.Name</a></h5>
+                                <div>
+                                    <p class="d-flex text mb-0">
+                                        <span class="text gia">@gia</span>
+                                        <span class="text-danger ml-2 text">- @Model.Discount %</span>
+                                    </p>
+                                    <p class="text formatGiaTienSauKhiGiamGia">@formatGiaTienSauKhiGiamGia</p>
+                                </div>
+                                <ul class="list-inline small">
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                <div>
+                    <img src="@Url.Content("~/Content/Account/notFound.jpg")" alt="Alternate Text" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

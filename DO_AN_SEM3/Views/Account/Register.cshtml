@@ -1,0 +1,107 @@
+﻿@model DO_AN_SEM3.Models.Users.UserModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Đăng ký thành viên</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/css/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/Account/style.css" rel="stylesheet" />
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg textCss size">Đăng Ký</p>
+                <form action="/Account/Register" method="post">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.HoVaTen, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Họ và tên"} })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.HoVaTen, "", new { @class = "text-danger textCss" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Tên đăng nhập" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger textCss" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.Sdt, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Số điện thoại" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Mật khẩu" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger textCss" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.ConfirmPass, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Xác nhận mật khẩu" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.ConfirmPass, "", new { @class = "text-danger textCss" })
+                    </div>
+                <div class="input-group mb-3">
+                    <div class="form-check mr-2">
+                        <input type="checkbox" name="GioiTinh" value="true" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Nam</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="GioiTinh" value="false" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Nữ</label>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block textCss">Xác nhận </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/adminlte.min.js"></script>
+</body>
+</html>
+
+

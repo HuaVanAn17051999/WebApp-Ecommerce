@@ -1,0 +1,125 @@
+﻿
+@model CLIENT.Models.RegisterModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/login/css/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/login/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/Content/css/common.css" rel="stylesheet" />
+</head>
+<style>
+    .text-danger {
+        color: #dc3545 !important;
+        font-size: 14px;
+        font-style: inherit;
+        font-family: 'FontAwesome';
+    }
+</style>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg textCss size">Đăng ký</p>
+                <form action="/Account/Register" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Họ và tên" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Tên đăng nhập" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.TenDangNhap, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.SoDT, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Số điện thoại" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.SoDT, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Email" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control textCss", placeholder = "Mật khẩu" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.PasswordFor(model => model.XacNhanMatKhau, new { @class = "form-control textCss", placeholder = "Xác nhận mật khẩu" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.XacNhanMatKhau, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <label class="textCss">Giới tính</label>
+                        <div class="input-group">
+                            @Html.RadioButtonFor(model => model.GioiTinh, true)
+                            <span class="textCss pr-3">Nam</span>
+                            @Html.RadioButtonFor(model => model.GioiTinh, false)
+                            <span class="textCss">Nữ</span>
+                        </div>
+                    </div>
+                        <div class="row justify-content-end">
+                            <a href="/Account/Login" class="btn btn-primary btn-sm textCss">Đăng nhập</a>
+                            <button type="submit" class="btn btn-primary btn-sm textCss ml-2">Đăng ký</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/login/js/jquery.min.js"></script>
+    <script src="~/Content/login/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/login/js/adminlte.min.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,65 @@
+﻿@model List<DO_AN_SEM3.Models.QuanLyHangTonKhoModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var soluong = 0;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tableQuanLyHangTonKho" class="display table table-sm body-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Ảnh sản phẩm </th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng nhập</th>
+                        <th>Giá</th>
+                        <th>Số lượng đã bán</th>
+                        <th>Số lượng còn lại</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            var a = 0;
+                            var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                            var price = String.Format(info, "{0:c}", item.Gia);
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content("~/Content/UploadFile/" + item.AnhSP)" alt="" style="height: 60px;" />
+                                </td>
+                                <td>@item.TenSP</td>
+                                <td>@item.SoLuongBanDau</td>
+                                <td>@price</td>
+                                <td class="text-danger">
+                                    @foreach (var item2 in item.DaBan)
+                                    {
+                                        a += item2;
+                                    }
+                                    @Html.Raw(a)
+                                </td>
+                                <td class="text-primary">@Html.Raw(item.SoLuongBanDau - a)</td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+            @section scripts {
+                <script>
+                    $(document).ready(function () {
+                        $('#tableQuanLyHangTonKho').DataTable({
+
+                        });
+                    });
+                </script>
+
+            }
+        </div>
+    </div>
+</div>

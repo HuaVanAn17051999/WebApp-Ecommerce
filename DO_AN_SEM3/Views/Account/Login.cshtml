@@ -1,0 +1,87 @@
+﻿@model DO_AN_SEM3.Models.Users.UserLoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/Content/Account/style.css" rel="stylesheet" />
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg textCss size">Đăng Nhập</p>
+                <form action="/Account/Login" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control textCss", placeholder = "Tên đăng nhập" } })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.PasswordFor(model => model.PassWord,  new { @class = "form-control textCss", placeholder = "Mật khẩu" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger textCss custommessage" })
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember" class="textCss">
+                                    Nhớ mật khẩu
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block textCss">Đăng nhập</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="social-auth-links text-center mb-3">
+                    <p class="textCss">- Hoặc -</p>
+                    <a href="#" class="btn btn-block btn-primary textCss">
+                        <i class="fa fa-facebook-square mr-2 " aria-hidden="true"></i> Đăng nhập bằng Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger textCss">
+                        <i class="fa fa-google-plus mr-2 " aria-hidden="true"></i>Đăng nhập bằng Google+
+                    </a>
+                </div>
+                <p class="mb-1">
+                    <a href="forgot-password.html" class="textCss">Quên mật khẩu</a>
+                </p>
+                <p class="mb-0">
+                    <a href="/Account/Register" class="text-center textCss">Đăng ký thành viên</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/adminlte.min.js"></script>
+
+</body>
+</html>
+
